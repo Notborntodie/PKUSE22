@@ -13,20 +13,13 @@ int main()
     int b[8];
     char temp[8];
     for (int k = 0; k < 8; k++)
-        temp[k] = getchar();
-    int* p = b;
-    for (int i = 0; i < 8; i++)
     {
-        *p = (int)temp[i]-48;
-        p++;
+        temp[k] = getchar();
+        b[k] = (int)temp[k] - 48;
     }
     int* Next = next(b);
     int* T = read_pi();
-    int ans = KMP(T, Next,b);
-    if(ans!=-1)
-        printf("Your birthday starts at T[%d]", ans);
-    else
-        printf("Can't find your birthday");
+    KMP(T, Next,b);
     return 0;
 }
 int* next(int* p) {
