@@ -1,7 +1,7 @@
 ﻿#include <stdio.h>
 #include<malloc.h>
 #include<stdlib.h>
-#define BLOCKSIZE 10000000
+#define BLOCKSIZE 10000002
 int pi[BLOCKSIZE];
 int* next(int* p);
 int* read_pi();
