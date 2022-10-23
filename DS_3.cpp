@@ -64,7 +64,7 @@ int* read_pi() {
 }
 int KMP(int* T, int* Next,int* P) {
     int j = -1;
-    for (int i = 0; i < BLOCKSIZE;)
+    for (int i = -1; i < BLOCKSIZE;)
     {
         if (j == -1 || T[i] == P[j])
         {
