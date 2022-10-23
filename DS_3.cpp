@@ -19,7 +19,11 @@ int main()
     }
     int* Next = next(b);
     int* T = read_pi();
-    KMP(T, Next,b);
+    int ans=KMP(T, Next,b);
+    if(ans!=-1)
+        printf("Your birthday starts at T[%d]\n",ans);
+    else
+        printf("Can't find your birthday\n");
     return 0;
 }
 int* next(int* p) {
