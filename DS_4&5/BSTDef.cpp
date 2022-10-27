@@ -23,7 +23,6 @@ public:
 	~BinaryTreeNode() {
 
 	}
-	/*以上为析构函数*/
 	bool isLeaf() {
 		if (!(this->Left || this->Right))
 			return true;
