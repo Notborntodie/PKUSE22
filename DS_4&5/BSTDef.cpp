@@ -1,10 +1,5 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
-#include<malloc.h>
-struct node {
-	int val;
-	node* next;
-};
 class BinaryTreeNode {
 public:
 	int val;
@@ -23,6 +18,7 @@ public:
 	~BinaryTreeNode() {
 
 	}
+	/*以上为析构函数*/
 	bool isLeaf() {
 		if (!(this->Left || this->Right))
 			return true;
@@ -32,59 +28,42 @@ public:
 };
 class BST {
 private:
+	
 public:
-	node* nums;
 	BinaryTreeNode* root;
 	BST() {
 		this->root = new BinaryTreeNode();
-		nums = (node*)malloc(sizeof(node));
 	}
-	void getnums() {
-		printf("input numbers\n");
-		int  p,j;
-		scanf("%d", &p);
-		setbuf(stdin, NULL);
-		node* temp = nums;
-		for (int i = 0; i < p; i++)
+	void Add(BinaryTreeNode* root,int nums) {
+		if (root->val == NULL)
 		{
-			scanf("%d", &j);
-			node* l = (node*)malloc(sizeof(node));
-			l->val = j;
-			temp->next = l;
-			temp = temp->next;
+			root->val = nums;
+			return;
 		}
-		temp->next = NULL;
-		nums = nums->next;
-		this->root->val = nums->val;
-		nums = nums->next;
-	}
-	void Create(BinaryTreeNode* root) {
-		if (nums->val <= root->val)
+		if (nums <= root->val)
 		{
 			if (root->Left)
 			{
-				Create(root->Left);
+				Add(root->Left,nums);
 				return;
 			}
 			else
 			{
-				BinaryTreeNode* temp = new BinaryTreeNode(nums->val);
-				nums = nums->next;
+				BinaryTreeNode* temp = new BinaryTreeNode(nums);
 				root->Left = temp;
-				return ;
+				return;
 			}
 		}
 		else
 		{
 			if (root->Right)
 			{
-				Create(root->Right);
+				Add(root->Right,nums);
 				return;
 			}
 			else
 			{
-				BinaryTreeNode* temp = new BinaryTreeNode(nums->val);
-				nums = nums->next;
+				BinaryTreeNode* temp = new BinaryTreeNode(nums);
 				root->Right = temp;
 				return;
 			}
