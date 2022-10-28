@@ -1,10 +1,16 @@
-﻿#include"BSTDef.cpp"
+#include"BSTDef.cpp"
 int main()
 {
 	BST* T = new BST();
-	BinaryTreeNode* M;
-	T->getnums();
-	while (T->nums)
-		T->Create(T->root);
+	int nums;
+	printf("input numbers\n");
+	scanf("%d", &nums);
+	setbuf(stdin, NULL);
+	int j;
+	for (int i = 0; i < nums; i++)
+	{
+		scanf("%d", &j);
+		T->Add(T->root, j);
+	}
 	T->InOrderTraverse(T->root);
 }
