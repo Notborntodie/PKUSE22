@@ -10,16 +10,16 @@ BTree* Homework_5() {
 	printf("\n\n输入字符以创建二叉树，输入#生成空结点。Example：ABD###CE#G##FH##I##\n");
 	T->root = T->CreateTree();
 	setbuf(stdin, NULL);
-	printf("\n该二叉树一共有%d片叶子。\n", T->getleaf());
+	printf("\n该二叉树一共有%d片叶子。\n", T->GetLeaf());
 	return T;
 }
 void Homework_6(BTree* T) {
-	printf("\n该二叉树一共有%d层。\n",T->getheight(T->root));
+	printf("\n该二叉树一共有%d层。\n",T->GetHeight(T->root));
 }
 void Homework_7(BTree* T) {
 	printf("\n镜面影射变换算法操作前（中序遍历）：\n");
 	T->InOrderTraverse(T->root);
-	T->swap(T->root);
+	T->Swap(T->root);
 	printf("\n镜面影射变换算法操作后（中序遍历）：\n");
 	T->InOrderTraverse(T->root);
 }

@@ -43,18 +43,18 @@ public:
 		return;
 	}
 
-	int getheight(BinaryTreeNode* p) {		//返回二叉树的高度
+	int GetHeight(BinaryTreeNode* p) {		//返回二叉树的高度
 		if (!p)
 			return 0;
 		else
 		{
-			int L = getheight(p->Left);
-			int R = getheight(p->Right);
+			int L = GetHeight(p->Left);
+			int R = GetHeight(p->Right);
 			return(L > R ? L + 1 : R + 1);
 		}
 	}
 
-	int getleaf() {	//返回叶结点个数
+	int GetLeaf() {	//返回叶结点个数
 		this->IOT(this->root);
 		int L = this->leaf;
 		this->leaf = 0;
@@ -76,15 +76,15 @@ public:
 		}
 	}
 
-	void swap(BinaryTreeNode* root) {		//递归交换左右结点
+	void Swap(BinaryTreeNode* root) {		//递归交换左右结点
 		if (root == NULL)
 			return;
 		BinaryTreeNode* temp;
 		temp = root->Left;
 		root->Left = root->Right;
 		root->Right= temp;
-		swap(root->Left);
-		swap(root->Right);
+		Swap(root->Left);
+		Swap(root->Right);
 		return;
 	}
 
