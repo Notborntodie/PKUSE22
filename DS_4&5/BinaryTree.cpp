@@ -35,17 +35,14 @@ void Homework_8(BTree* T) {
 	q = T->GetVal(T->root, q, c2);
 	BinaryTreeNode* ans = T->LowestAncestor(p, q, T->root);
 	if (!ans)
-		printf("有结点为空！，无公共祖先结点！");
+		printf("无公共祖先结点！");
 	else
 		printf("\n两个结点的公共祖先结点的值为%c",ans->val);
 }
 bool Homework_14_Recursion(BTree* T,char c) {
 	BinaryTreeNode* p = new BinaryTreeNode('#');
 	p = T->GetVal(T->root, p, c);
-	if (p->val == '#')
-		return false;
-	else
-		return true;
+	return(!p->val == '#');
 }
 
 int main()

@@ -11,10 +11,7 @@ public:
 		this->val = i;
 	}
 	bool isLeaf() {
-		if (!(this->Left || this->Right))
-			return true;
-		else
-			return false;
+		return(!(this->Left || this->Right));
 	}
 };
 
