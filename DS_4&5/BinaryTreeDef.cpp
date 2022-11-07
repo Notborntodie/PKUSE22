@@ -144,4 +144,19 @@ public:
 		}
 		return false;
 	}
+
+	int Distance(BinaryTreeNode* node, BinaryTreeNode* common,int level) {	//common由最小公共结点函数得到
+		if (common == NULL)
+			return -1;
+		if (node->val == common->val)
+			return level;
+		int left = Distance(node, common->Left, level + 1);
+		if (left == -1)
+			return Distance(node, common->Right, level + 1);
+		else
+			return left;
+	}
+	int Dis(BinaryTreeNode* p, BinaryTreeNode* q, BinaryTreeNode* common) {
+		return Distance(p, common, -1) + Distance(q, common, -1);
+	}
 };

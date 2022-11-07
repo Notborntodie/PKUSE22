@@ -23,21 +23,14 @@ void Homework_7(BTree* T) {
 	printf("\n镜面影射变换算法操作后（中序遍历）：\n");
 	T->InOrderTraverse(T->root);
 }
-void Homework_8(BTree* T) {
-	char c1, c2;
-	printf("\n\n请输入任意两个结点的值：\n");
-	c1 = getchar();
-	c2 = getchar();
-	setbuf(stdin, NULL);
-	BinaryTreeNode* p = new BinaryTreeNode('#');
-	p = T->GetVal(T->root, p, c1);
-	BinaryTreeNode* q = new BinaryTreeNode('#');
-	q = T->GetVal(T->root, q, c2);
+BinaryTreeNode* Homework_8(BTree* T,BinaryTreeNode* p, BinaryTreeNode* q) {
+
 	BinaryTreeNode* ans = T->LowestAncestor(p, q, T->root);
 	if (!ans)
 		printf("无公共祖先结点！");
 	else
 		printf("\n两个结点的公共祖先结点的值为%c",ans->val);
+	return ans;
 }
 bool Homework_14_Recursion(BTree* T,char c) {		//第14题递归解法
 	BinaryTreeNode* p = new BinaryTreeNode('#');
@@ -50,6 +43,18 @@ int main()
 	Homework_4();
 	BTree* T;
 	T = Homework_5();
+	char c1, c2;
+	printf("\n\n请输入任意两个结点的值：\n");
+	c1 = getchar();
+	c2 = getchar();
+	setbuf(stdin, NULL);
+	BinaryTreeNode* p = new BinaryTreeNode('#');
+	p = T->GetVal(T->root, p, c1);
+	BinaryTreeNode* q = new BinaryTreeNode('#');
+	q = T->GetVal(T->root, q, c2);
+	BinaryTreeNode* common=Homework_8(T,p,q);
+	int ans=T->Dis(p, q, common);
+	printf("\n%d", ans);
 
 }
 
