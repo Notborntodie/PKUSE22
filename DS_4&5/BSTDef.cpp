@@ -72,9 +72,6 @@ public:
 		if (p == NULL)
 			return;
 		InOrderTraverse(p->Left);
-		if (p->isLeaf())
-			leaf++;
-		num++;
 		cout << p->val+' ';
 		InOrderTraverse(p->Right);
 		return;
@@ -111,7 +108,7 @@ public:
 	void smallcount(BinaryTreeNode* p,string k) {		//周游一遍判断比较关键码大小即可
 		if (p == NULL)
 			return;
-		if (k <= p->val)
+		if (k >= p->val)
 			num++;
 		smallcount(p->Left, k);
 		smallcount(p->Right, k);
