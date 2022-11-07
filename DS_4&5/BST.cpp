@@ -15,7 +15,6 @@ int main()
 	}
 	T->InOrderTraverse(T->root);
 	BST* p=new BST();
-	p->root=T->smallcount(T->root, "o");
 	//if (p->root)
 		
 	

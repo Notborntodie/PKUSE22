@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include<string>
+#include<stack>
 using namespace std;
 
 class BinaryTreeNode {
@@ -24,9 +25,9 @@ public:
 };
 class BST {
 private:
-	int num = 0;
 	int leaf = 0;
 public:
+	int num = 0;
 	BinaryTreeNode* root;
 	BST() {
 		this->root = new BinaryTreeNode();
@@ -107,7 +108,39 @@ public:
 				DelNode(p->Right, token);
 		}
 	}
-	BinaryTreeNode* smallcount(BinaryTreeNode* p,string k) {
-		
+	void smallcount(BinaryTreeNode* p,string k) {		//周游一遍判断比较关键码大小即可
+		if (p == NULL)
+			return;
+		if (k <= p->val)
+			num++;
+		smallcount(p->Left, k);
+		smallcount(p->Right, k);
+		return;
+	}
+
+	int smallcount_NonRecursion(BinaryTreeNode* p, string k) {		//第15题非递归解法，采用ppt提到的遍历模式然后稍加修改
+		int count = 0;
+		using std::stack;
+		stack<BinaryTreeNode*> st;
+		BinaryTreeNode* t = p;
+		while (!st.empty() || t) 
+		{
+			if (t) 
+			{
+				st.push(t);
+				t = t->Left;
+			}
+			else 
+			{
+				t = st.top();
+				if (t->val >= k)
+					count++;
+				else
+					break;
+				t = t->Right;
+				st.pop();
+			}	
+		}
+		return count;
 	}
 };

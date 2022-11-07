@@ -115,15 +115,14 @@ public:
 			return root;
 		return(!Right ? Left : Right);
 	}
-	bool isBST(BinaryTreeNode* p) {				//判断其是否为BST
-		if (p == NULL)
+	bool isBST(BinaryTreeNode* p) {//判断其是否为BST
+		if (!p)
 			return true;
-		bool left = isBST(p->Left);
-		if (p->val > cmp)
-			cmp = p->val;
-		else
+		if (p->Left && p->Left->val > p->val)
 			return false;
-		return isBST(p->Right);
+		if (p->Right && p->Right->val < p->val)
+			return false;
+		return isBST(p->Left) && isBST(p->Right);
 	}
 	bool Search_NonRecursion(BinaryTreeNode* root, char c) {		//14题非递归解法
 		using std::stack;
