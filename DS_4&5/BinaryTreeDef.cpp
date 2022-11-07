@@ -1,6 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include<iostream>
+#include<malloc.h>
+#include<stack>
+using namespace::std;
+
 class BinaryTreeNode {
+	friend class BTree;
 public:
 	char val;
 	BinaryTreeNode* Left;
@@ -19,6 +25,7 @@ public:
 class BTree {
 private:
 	int leaf = 0;
+	char cmp=(char)0;
 public:
 	BinaryTreeNode* root;
 	BTree() {
@@ -36,9 +43,9 @@ public:
 	void IOT(BinaryTreeNode* p) {
 		if (p == NULL)
 			return;
-		if (p->isLeaf())			//直接在周游中插入判断叶结点的函数即可
-			leaf++;
 		IOT(p->Left);
+		if (this->leaf)
+			leaf++;
 		IOT(p->Right);
 		return;
 	}
@@ -107,5 +114,35 @@ public:
 		if (Left && Right)
 			return root;
 		return(!Right ? Left : Right);
+	}
+	bool isBST(BinaryTreeNode* p) {				//判断其是否为BST
+		if (p == NULL)
+			return true;
+		bool left = isBST(p->Left);
+		if (p->val > cmp)
+			cmp = p->val;
+		else
+			return false;
+		return isBST(p->Right);
+	}
+	bool Search_NonRecursion(BinaryTreeNode* root, char c) {		//14题非递归解法
+		using std::stack;
+		stack<BinaryTreeNode*> st;
+		BinaryTreeNode* p = root;
+		while (!st.empty() || p) {
+			if (p)
+			{
+				st.push(p);
+				p = p->Left;
+			}
+			else {
+				p = st.top();
+				if (p->val == c)
+					return true;
+				p = p->Right;
+				st.pop();
+			}
+		}
+		return false;
 	}
 };

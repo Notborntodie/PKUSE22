@@ -1,16 +1,22 @@
-#include"BSTDef.cpp"
+﻿#include"BSTDef.cpp"
 int main()
 {
 	BST* T = new BST();
-	int nums;
-	printf("input numbers\n");
-	scanf("%d", &nums);
+	int nodes;
+	cout << "请输入希望生成的结点数目："<<endl;
+	cin >> nodes;
 	setbuf(stdin, NULL);
-	int j;
-	for (int i = 0; i < nums; i++)
+	string j;
+	for (int i = 0; i < nodes; i++)
 	{
-		scanf("%d", &j);
+		cout << "现在输入第"<<i+1<< "个结点内容："<<endl;
+		getline(cin, j);
 		T->Add(T->root, j);
 	}
 	T->InOrderTraverse(T->root);
+	BST* p=new BST();
+	p->root=T->smallcount(T->root, "o");
+	//if (p->root)
+		
+	
 }

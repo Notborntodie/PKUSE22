@@ -39,7 +39,7 @@ void Homework_8(BTree* T) {
 	else
 		printf("\n两个结点的公共祖先结点的值为%c",ans->val);
 }
-bool Homework_14_Recursion(BTree* T,char c) {
+bool Homework_14_Recursion(BTree* T,char c) {		//第14题递归解法
 	BinaryTreeNode* p = new BinaryTreeNode('#');
 	p = T->GetVal(T->root, p, c);
 	return(!p->val == '#');
@@ -50,8 +50,5 @@ int main()
 	Homework_4();
 	BTree* T;
 	T = Homework_5();
-	Homework_6(T);
-	Homework_7(T);
-	Homework_8(T);
 }
 

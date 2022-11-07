@@ -1,55 +1,52 @@
 #define _CRT_SECURE_NO_WARNINGS
-#include <stdio.h>
+#include <iostream>
+#include<string>
+using namespace std;
+
 class BinaryTreeNode {
 public:
-	int val;
+	string val;
 	BinaryTreeNode* Left;
 	BinaryTreeNode* Right;
 	BinaryTreeNode() {
-		this->val = NULL;
+		this->val = "";
 		this->Left = NULL;
 		this->Right = NULL;
 	}
-	BinaryTreeNode(int i) {
+	BinaryTreeNode(string i) {
 		this->val = i;
 		this->Left = NULL;
 		this->Right = NULL;
 	}
-	~BinaryTreeNode() {
-
-	}
-	/*ä»¥ä¸Šä¸ºæžæž„å‡½æ•°*/
 	bool isLeaf() {
-		if (!(this->Left || this->Right))
-			return true;
-		else
-			return false;
+		return !(this->Left || this->Right);
 	}
 };
 class BST {
 private:
-	
+	int num = 0;
+	int leaf = 0;
 public:
 	BinaryTreeNode* root;
 	BST() {
 		this->root = new BinaryTreeNode();
 	}
-	void Add(BinaryTreeNode* root,int nums) {
-		if (root->val == NULL)
+	void Add(BinaryTreeNode* root,string input) {		//ÏòËÑË÷¶þ²æÊ÷ÖÐÌí¼ÓÐÂµÄ½áµã£¬¿ÉÓÃÓÚ13Ìâ
+		if (root->val == "")
 		{
-			root->val = nums;
+			root->val = input;
 			return;
 		}
-		if (nums <= root->val)
+		if (input <= root->val)
 		{
 			if (root->Left)
 			{
-				Add(root->Left,nums);
+				Add(root->Left, input);
 				return;
 			}
 			else
 			{
-				BinaryTreeNode* temp = new BinaryTreeNode(nums);
+				BinaryTreeNode* temp = new BinaryTreeNode(input);
 				root->Left = temp;
 				return;
 			}
@@ -58,12 +55,12 @@ public:
 		{
 			if (root->Right)
 			{
-				Add(root->Right,nums);
+				Add(root->Right, input);
 				return;
 			}
 			else
 			{
-				BinaryTreeNode* temp = new BinaryTreeNode(nums);
+				BinaryTreeNode* temp = new BinaryTreeNode(input);
 				root->Right = temp;
 				return;
 			}
@@ -74,8 +71,43 @@ public:
 		if (p == NULL)
 			return;
 		InOrderTraverse(p->Left);
-		printf("%d ", p->val);
+		if (p->isLeaf())
+			leaf++;
+		num++;
+		cout << p->val+' ';
 		InOrderTraverse(p->Right);
 		return;
+	}
+
+	void DelNode(BinaryTreeNode* p,string token) {			//12ÌâÉ¾³ýBST½áµã
+		if (p->val == token) {
+			p == NULL;
+			return;
+		}
+		if (p->val > token){
+			if (p->Left->val == token)
+			{
+				BinaryTreeNode* Del = p->Left;
+				p->Left = Del->Left;
+				p->Right = Del->Right;
+				Del = NULL;
+			}
+			else
+				DelNode(p->Left, token);
+		}
+		else {
+			if (p->Right->val == token)
+			{
+				BinaryTreeNode* Del = p->Right;
+				p->Left = Del->Left;
+				p->Right = Del->Right;
+				Del = NULL;
+			}
+			else
+				DelNode(p->Right, token);
+		}
+	}
+	BinaryTreeNode* smallcount(BinaryTreeNode* p,string k) {
+		
 	}
 };
